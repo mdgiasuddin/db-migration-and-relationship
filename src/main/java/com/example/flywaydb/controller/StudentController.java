@@ -19,7 +19,9 @@ public class StudentController {
 
     @PostMapping
     public String createNewStudent(@RequestBody @Validated StudentRequest request) {
-        return studentService.createNewStudent(request);
+        studentService.createNewStudent(request);
+
+        return "Student created successfully...";
     }
 
     @PostMapping("/register")

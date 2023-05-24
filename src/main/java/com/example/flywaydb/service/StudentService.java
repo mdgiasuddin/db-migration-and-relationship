@@ -21,15 +21,13 @@ public class StudentService {
     private final StudentRepository studentRepository;
     private final CourseRepository courseRepository;
 
-    public String createNewStudent(StudentRequest request) {
+    public Student createNewStudent(StudentRequest request) {
         Student student = new Student();
 
         student.setRollNumber(request.getRollNumber());
         student.setName(request.getName());
 
-        studentRepository.save(student);
-
-        return "Student created successfully...";
+        return studentRepository.save(student);
     }
 
     public String registerStudent(RegistrationRequest request) {
