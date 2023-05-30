@@ -25,6 +25,7 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-devtools'
     implementation 'org.flywaydb:flyway-core'
     implementation 'com.github.javafaker:javafaker:1.0.2'
+    implementation 'com.github.f4b6a3:ulid-creator:4.0.0'
     compileOnly 'org.projectlombok:lombok'
     runtimeOnly 'org.postgresql:postgresql'
     annotationProcessor 'org.projectlombok:lombok'

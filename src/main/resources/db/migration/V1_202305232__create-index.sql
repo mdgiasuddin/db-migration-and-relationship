@@ -1,0 +1,1 @@
+create index if not exists student_index_by_name on student (name);

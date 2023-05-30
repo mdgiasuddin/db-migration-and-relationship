@@ -1,0 +1,1 @@
+create index student_index_by_name_v2 on student (name);

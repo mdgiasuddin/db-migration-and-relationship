@@ -9,6 +9,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequiredArgsConstructor
@@ -32,6 +33,14 @@ public class StudentController {
     @GetMapping
     public List<StudentResponse> getAllStudents() {
         return studentService.getAllStudents();
+    }
+
+    @GetMapping("/{id}")
+    public StudentResponse getStudentById(
+            @PathVariable("id") Long id,
+            @RequestParam(name = "id_key", required = false) UUID idKey
+    ) {
+        return studentService.getStudentById(id, idKey);
     }
 
 }

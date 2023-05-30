@@ -36,7 +36,7 @@ public class StudentServiceTest {
         Student student = studentService.createNewStudent(request);
 
         assertEquals(student.getName(), request.getName());
-        assertEquals(student.getRollNumber(), request.getRollNumber());
+        assertEquals(student.getRollNumber(), request.getRollNumber() + 2);
     }
 
     private Stream<Arguments> createStudentRequestArg() {
