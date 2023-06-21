@@ -12,8 +12,10 @@ import com.example.flywaydb.repository.StudentRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -25,9 +27,8 @@ public class StudentService {
     public Student createNewStudent(StudentRequest request) {
         Student student = new Student();
 
-        student.setIdKey(UUID.randomUUID());
-        student.setRollNumber(request.getRollNumber());
-        student.setName(request.getName());
+        student.setRollNumber(request.rollNumber());
+        student.setName(request.name());
 
         return studentRepository.save(student);
     }
@@ -101,5 +102,22 @@ public class StudentService {
                                 ).toList()
                 )
                 .build();
+    }
+
+    public String updateRegisteredCourse(RegistrationRequest request) {
+        Student student = studentRepository.findStudentWithCoursesById(request.getStudentId())
+                .orElseThrow(() -> new BusinessException("No student found..."));
+
+        List<Course> updatedCourseList = courseRepository.findAllByIdIn(request.getCourseIdList());
+
+        // Using set again delete previous mapping completely.
+//        student.setRegisteredCourses(new HashSet<>(courseList));
+
+        student.getRegisteredCourses().addAll(updatedCourseList);
+        student.getRegisteredCourses().retainAll(updatedCourseList);
+
+        studentRepository.save(student);
+
+        return "Student registered with courses...";
     }
 }

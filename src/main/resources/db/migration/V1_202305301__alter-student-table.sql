@@ -1,1 +1,0 @@
-alter table student add column if not exists id_key uuid;

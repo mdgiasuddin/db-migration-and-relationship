@@ -32,7 +32,7 @@ public class Student {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private UUID idKey;
+    private UUID idKey = UUID.randomUUID();
     private int rollNumber;
     private String name;
 

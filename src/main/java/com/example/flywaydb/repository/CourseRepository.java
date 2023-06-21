@@ -8,13 +8,14 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.util.List;
+import java.util.Set;
 
 public interface CourseRepository extends JpaRepository<Course, Long> {
 
     @EntityGraph(attributePaths = {"department", "instructor"})
     List<Course> findAll();
 
-    List<Course> findAllByIdIn(List<Long> courseIdList);
+    List<Course> findAllByIdIn(Set<Long> courseIdList);
 
     @EntityGraph(attributePaths = {"department", "instructor"})
     @Query("select c from Course c where c.department.name = :department_name" +
